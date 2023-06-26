@@ -8,11 +8,11 @@ import { LoginService } from './login.service';
 })
 export class IdleTimeoutService {
 
-  public lastActive$: Observable<Date>;
+  public lastActive$!: Observable<Date>;
 
   subscriptions: Subscription;
 
-  idleTimerSubscription: Subscription;
+  idleTimerSubscription: Subscription = new Subscription;
 
   //Timer tick is a period of checking the last active date
   private timerTick = 500;
@@ -26,7 +26,7 @@ export class IdleTimeoutService {
   // Events that is going to interrupt the idle state
   private events: string[] = ['keydown', 'click', 'wheel', 'mousemove','DOMMouseScroll','mousewheel','touchmove','MSPointerMove'];
 
-  private lastActive: BehaviorSubject<Date>;
+  private lastActive!: BehaviorSubject<Date>;
 
   constructor(
     private loginService: LoginService,
